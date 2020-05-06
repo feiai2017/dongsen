@@ -21,7 +21,7 @@ class HandbookController extends Controller
             case 'bug':
                 $res = Bug::paginate();
         }
-        $url = 'http://dongsen.com/storage';
+        $url = 'https://fly.sailoa.com/storage';
         foreach ($res as $key => $value){
             $val = substr($value->image, 2);
             $res[$key]['image'] = "$url$val";
