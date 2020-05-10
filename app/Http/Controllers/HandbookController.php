@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Models\Art;
 use App\Models\Bug;
 use App\Models\Fish;
 use Illuminate\Http\Request;
@@ -20,6 +21,10 @@ class HandbookController extends Controller
                 break;
             case 'bug':
                 $res = Bug::paginate();
+                break;
+            case 'art':
+                $res = Art::paginate();
+                break;
         }
         $url = 'https://fly.sailoa.com/storage';
         foreach ($res as $key => $value){
