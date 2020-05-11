@@ -23,7 +23,7 @@ class HandbookController extends Controller
                 $res = Bug::paginate();
                 break;
             case 'art':
-                $res = Art::paginate();
+                $res = Art::getArtsByPages();
                 break;
         }
         $url = 'https://fly.sailoa.com/storage';
