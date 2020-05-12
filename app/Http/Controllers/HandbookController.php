@@ -11,25 +11,24 @@ use Illuminate\Http\Request;
 class HandbookController extends Controller
 {
     //
-    public function getList(Request $request, $arg) {
+    public function getList($arg) {
         switch ($arg) {
             case 'animal':
-                $res = Animal::paginate();
+                $animal = new Animal();
+                $res = $animal->getList();
                 break;
             case 'fish':
-                $res = Fish::paginate();
+                $fish = new Fish();
+                $res = $fish->getList();
                 break;
             case 'bug':
-                $res = Bug::paginate();
+                $bug = new Bug();
+                $res = $bug->getList();
                 break;
             case 'art':
-                $res = Art::paginate();
+                $art = new Art();
+                $res = $art->getList();
                 break;
-        }
-        $url = 'https://fly.sailoa.com/storage';
-        foreach ($res as $key => $value){
-            $val = substr($value->image, 2);
-            $res[$key]['image'] = "$url$val";
         }
 
         return $res;
