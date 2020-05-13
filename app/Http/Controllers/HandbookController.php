@@ -6,6 +6,7 @@ use App\Models\Animal;
 use App\Models\Art;
 use App\Models\Bug;
 use App\Models\Fish;
+use App\Models\Fossil;
 use Illuminate\Http\Request;
 
 class HandbookController extends Controller
@@ -28,6 +29,10 @@ class HandbookController extends Controller
             case 'art':
                 $art = new Art();
                 $res = $art->getList();
+                break;
+            case 'fossil':
+                $fossil = new Fossil();
+                $res = $fossil->getList();
                 break;
         }
 
