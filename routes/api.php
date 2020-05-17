@@ -18,4 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// 动森图鉴接口
 Route::post('pictureList/{type}', 'HandbookController@getList');
+
+// fish, bug数据库格式修改
+Route::post('mysql', 'MysqlfixController@fix');

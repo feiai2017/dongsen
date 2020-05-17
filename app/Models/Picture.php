@@ -11,15 +11,18 @@ class Picture extends Model
     protected function getList(Request $request) {
         $where_array = array();
 
-        if (!empty($request['name']))
+        $res = Model::when(!empty($request['name']), function($q) use ($request){
             $where_array['name'] = $request['name'];
-
-        if (!empty($request['race']))
+            return $q->where('name', 'like', $request['name'] . '%');
+        })->when(!empty($request['race']), function ($q) use ($request) {
             $where_array['race'] = $request['race'];
-
-        $res = Model::where($where_array)->paginate();
-        Log::debug('where_array: ' . json_encode($where_array, JSON_UNESCAPED_UNICODE));
-        Log::debug('res: ' . json_encode($res, JSON_UNESCAPED_UNICODE));
+            return $q->where('race', $request['race']);
+        })->when(!empty($request['character']), function ($q) use ($request) {
+            return $q->where('character', $request['character']);
+        })->when(!empty($request['month']), function ($q) use ($request) {
+            $month_type = $request['month_type'] == 1 ? 'south_month' : 'north_month';
+            return $q->whereRaw("FIND_IN_SET(?, $month_type)", [$request['month']]);
+        })->paginate();
 
         $url = 'https://fly.sailoa.com/storage';
         foreach ($res as $key => $value){

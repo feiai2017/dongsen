@@ -21,23 +21,23 @@ class HandbookController extends Controller
                 break;
             case 'fish':
                 $fish = new Fish();
-                $res = $fish->getList();
+                $res = $fish->getList($request);
                 break;
             case 'bug':
                 $bug = new Bug();
-                $res = $bug->getList();
+                $res = $bug->getList($request);
                 break;
             case 'art':
                 $art = new Art();
-                $res = $art->getList();
+                $res = $art->getList($request);
                 break;
             case 'fossil':
                 $fossil = new Fossil();
-                $res = $fossil->getList();
+                $res = $fossil->getList($request);
                 break;
             case 'furniture':
                 $furniture = new Furniture();
-                $res = $furniture->getList();
+                $res = $furniture->getList($request);
                 break;
         }
 
