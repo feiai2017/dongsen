@@ -37,6 +37,8 @@ class Art extends Model
         return $url ? "https://fly.sailoa.com" . Storage::url($url) : '';
     }
 
+
+    
     public function getUrls()
     {
         $big_images          = json_decode($this->big_image, true);
