@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArtResource;
 use App\Models\Animal;
 use App\Models\Art;
 use App\Models\Bug;
@@ -28,9 +29,13 @@ class HandbookController extends Controller
                 $res = $bug->getList($request);
                 break;
             case 'art':
+                $art = Art::paginate();
+                $res = ArtResource::collection($art);
+                break;
+            /*case 'art':
                 $art = new Art();
                 $res = $art->getList($request);
-                break;
+                break;*/
             case 'fossil':
                 $fossil = new Fossil();
                 $res = $fossil->getList($request);
